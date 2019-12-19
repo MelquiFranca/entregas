@@ -40,12 +40,6 @@ export default function Entregas(props) {
             </h1>
 
             <div class="painel">
-                <Mapa 
-                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=KEY"         
-                    loadingElement={<div style={{ height: `100%` }} />}
-                    containerElement={<div style={{ height: `400px` }} />}
-                    mapElement={<div style={{ height: `100%` }} />}
-                />
 
                 {<table >
                     <thead>
@@ -79,7 +73,11 @@ export default function Entregas(props) {
                             <td>{e.localOrigem}</td>                            
                             <td>{e.localDestino}</td>                            
                             <td>
-                                <a onClick={() => handleClickLink(e.id)} class="linkMapa">                                    
+                                <a 
+                                    // onClick={() => handleClickLink(e.id)} 
+                                    href={`https://www.google.com/maps/dir/${e.localOrigem}/${e.localDestino}`} 
+                                    target="_blank"
+                                    class="linkMapa">                                    
                                     <i class="fa fa-map-marker" aria-hidden="true"></i> Mapa/Trajeto
                                 </a>
                             </td>                            

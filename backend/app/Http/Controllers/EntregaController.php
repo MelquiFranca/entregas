@@ -47,7 +47,8 @@ class EntregaController extends Controller
      */
     public function show($id)
     {
-        //
+        $entrega = Entrega::find($id);
+        return $entrega;
     }
 
     /**

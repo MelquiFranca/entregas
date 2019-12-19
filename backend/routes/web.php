@@ -12,3 +12,4 @@
 */
 
 Route::get('/entregas', 'EntregaController@index');
+Route::get('/entregas/{id}', 'EntregaController@show');
