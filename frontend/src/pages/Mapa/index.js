@@ -1,17 +1,20 @@
 import React from 'react';
+import {Marker, GoogleMap, withGoogleMap, withScriptjs} from 'react-google-maps';
 
 import BotaoVoltar from '../../components/BotaoVoltar';
 
 
-export default function Mapa(props) {
+function Mapa(props) {
     return (        
-        <div class="container">
-            <h1>Mapa</h1>
-            <BotaoVoltar 
-                {...props}
-                rota="/entregas"
-            />
-        </div>
-        
+            <GoogleMap 
+                defaultZoom={8}
+                defaultCenter={{lat: -34.397, lng: 150.644}}                 
+            >
+                <Marker position={{lat: -34.397, lng: 150.644}} />
+
+            </GoogleMap>    
+
     );
 }
+
+export default withScriptjs(withGoogleMap(Mapa));

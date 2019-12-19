@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import BotaoVoltar from '../../components/BotaoVoltar';
+import Mapa from '../Mapa';
 
 import api from '../../services/api';
 
@@ -39,7 +40,14 @@ export default function Entregas(props) {
             </h1>
 
             <div class="painel">
-                <table >
+                <Mapa 
+                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=KEY"         
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement={<div style={{ height: `400px` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}
+                />
+
+                {<table >
                     <thead>
                         <tr>
                             <th>
@@ -65,7 +73,7 @@ export default function Entregas(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {entregas.map(e => (<tr key={e.id}>
+                        {entregas.length > 0 ? entregas.map(e => (<tr key={e.id}>
                             <td>{e.cliente}</td>                            
                             <td>{e.dataEntrega}</td>                            
                             <td>{e.localOrigem}</td>                            
@@ -75,9 +83,13 @@ export default function Entregas(props) {
                                     <i class="fa fa-map-marker" aria-hidden="true"></i> Mapa/Trajeto
                                 </a>
                             </td>                            
-                        </tr>))}
+                        </tr>)) : 
+                            <tr>
+                                <td colSpan="5">Nenhum Registro Encontrado</td>
+                            </tr>
+                        }
                     </tbody>
-                </table>      
+                </table>}     
             </div>
                           
             <BotaoVoltar 
