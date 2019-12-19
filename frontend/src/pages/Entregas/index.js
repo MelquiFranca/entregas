@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import BotaoVoltar from '../../components/BotaoVoltar';
 
+import api from '../../services/api';
+
 import './style.css';
 
 const ENTREGAS = [
@@ -12,19 +14,31 @@ const ENTREGAS = [
     {id: 5, cliente: 'Melqui', dataEntrega: '05/12/2019', localOrigem: 'Engenhoca', localDestino: 'Cinelândia'},
 ]
 
+
 export default function Entregas(props) {
+    const [entregas, setEntregas] = useState([]);
+
+    useEffect(() => {
+        async function carregaDados() {
+            const dados = await api.get('/entregas');
+            setEntregas(dados.data);
+        }
+
+        carregaDados();
+        
+    }, []);
 
     function handleClickLink(id) {
         props.history.push(`/mapa/${id}`);
     }
 
     return (
-        <div className="container">
-            <h1 className="titulo">
+        <div class="container">
+            <h1 class="titulo">
                 Lista de Entregas
             </h1>
 
-            <div className="painel">
+            <div class="painel">
                 <table >
                     <thead>
                         <tr>
@@ -51,13 +65,13 @@ export default function Entregas(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {ENTREGAS.map(e => (<tr key={e.id}>
+                        {entregas.map(e => (<tr key={e.id}>
                             <td>{e.cliente}</td>                            
                             <td>{e.dataEntrega}</td>                            
                             <td>{e.localOrigem}</td>                            
                             <td>{e.localDestino}</td>                            
                             <td>
-                                <a onClick={() => handleClickLink(e.id)} className="linkMapa">                                    
+                                <a onClick={() => handleClickLink(e.id)} class="linkMapa">                                    
                                     <i class="fa fa-map-marker" aria-hidden="true"></i> Mapa/Trajeto
                                 </a>
                             </td>                            

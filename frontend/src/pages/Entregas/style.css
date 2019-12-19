@@ -1,7 +1,11 @@
 .container .painel {
-    flex: 4;
+    flex: 8;    
+    overflow: auto;
 }
 
+.painel::-webkit-scrollbar { 
+    display: none;
+  }
 .container .painel table tr th,
 .container .painel table tr td {
     padding: 5px 2px;
@@ -22,6 +26,7 @@
 .container .painel table tr td .linkMapa {    
     text-decoration: none;
     color: #333;
+    cursor: pointer;
 }
 
 .container .painel table tr td .linkMapa i {
