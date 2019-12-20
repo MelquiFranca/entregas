@@ -37,7 +37,7 @@ class EntregaController extends Controller
     public function store(Request $request)
     {
         $entrega = $request->all();
-        // Entrega::create($entrega);
+        Entrega::create($entrega);
 
         return $entrega;
     }

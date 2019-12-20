@@ -18,7 +18,7 @@ export default function Cadastro(props) {
             localOrigem,
             localDestino
         });
-        
+
         return retorno.data;
     }
 
@@ -28,8 +28,7 @@ export default function Cadastro(props) {
         const retorno = salvarDados();
 
         if(retorno) {
-            // props.history.push('/entregas');
-            console.log(retorno);
+            props.history.push('/entregas');
         }
     }
 
