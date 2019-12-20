@@ -74,8 +74,8 @@ export default function Entregas(props) {
                             <td>{e.localDestino}</td>                            
                             <td>
                                 <a 
-                                    // onClick={() => handleClickLink(e.id)} 
-                                    href={`https://www.google.com/maps/dir/${e.localOrigem}/${e.localDestino}`} 
+                                    onClick={() => handleClickLink(e.id)} 
+                                    // href={`https://www.google.com/maps/dir/${e.localOrigem}/${e.localDestino}`} 
                                     target="_blank"
                                     class="linkMapa">                                    
                                     <i class="fa fa-map-marker" aria-hidden="true"></i> Mapa/Trajeto

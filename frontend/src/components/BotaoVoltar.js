@@ -9,7 +9,7 @@ export default function BotaoVoltar({history, rota}) {
     }
     return (
         <a onClick={() => handleClick()} className="botaoVoltar">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <i className="fa fa-arrow-left" aria-hidden="true"></i>
             Voltar
         </a>
     );

@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import BotaoVoltar from '../../components/BotaoVoltar';
 
+import api from '../../services/api';
+
 import './style.css';
 
 export default function Cadastro(props) {
     const [cliente, setCliente] = useState('');
-    const [dataEntrega, setDataEntrega] = useState(null);
+    const [dataEntrega, setDataEntrega] = useState();
     const [localOrigem, setLocalOrigem] = useState('');
     const [localDestino, setLocalDestino] = useState('');
 
+    async function salvarDados() {
+        const retorno = await api.post('/entregas', {
+            cliente,
+            dataEntrega,
+            localOrigem,
+            localDestino
+        });
+        
+        return retorno.data;
+    }
+
     function handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault();        
+
+        const retorno = salvarDados();
+
+        if(retorno) {
+            // props.history.push('/entregas');
+            console.log(retorno);
+        }
     }
 
     return (
-        <div class="container">
+        <div className="container">
             <h1 className="titulo">
                 Cadastrar Entrega
             </h1>
@@ -25,10 +45,9 @@ export default function Cadastro(props) {
                 onSubmit={e => handleSubmit(e)}
             >
                 <div className="formInput">
-                    <label for="">Nome Cliente:</label>
+                    <label htmlFor="">Nome Cliente:</label>
                     <input 
                         type="text" 
-                        name="" 
                         value={cliente}
                         onChange={e => setCliente(e.value)}
                         placeholder="Digite o nome completo do Cliente"
@@ -37,20 +56,18 @@ export default function Cadastro(props) {
                     />
                 </div>
                 <div className="formInput">
-                    <label for="">Data de Entrega:</label>
+                    <label htmlFor="">Data de Entrega:</label>
                     <input 
                         type="date" 
-                        name="" 
                         value={dataEntrega}
                         onChange={e => setDataEntrega(e.value)}
                     />
                 </div>
 
                 <div className="formInput">
-                    <label for="">Origem:</label>
+                    <label htmlFor="">Origem:</label>
                     <input 
                         type="text" 
-                        name="" 
                         value={localOrigem}
                         onChange={e => setLocalOrigem(e.value)}
                         placeholder="Digite o Endereço de Origem"
@@ -60,10 +77,9 @@ export default function Cadastro(props) {
                 </div>
 
                 <div className="formInput">
-                    <label for="">Destino:</label>
+                    <label htmlFor="">Destino:</label>
                     <input 
                         type="text" 
-                        name="" 
                         value={localDestino}
                         onChange={e => setLocalDestino(e.value)}
                         placeholder="Digite o Endereço de Destino"
@@ -77,7 +93,7 @@ export default function Cadastro(props) {
                         type="submit"
                         className="btnSalvar"
                     >
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <i className="fa fa-floppy-o" aria-hidden="true"></i>
                         Salvar
                     </button>   
                     <BotaoVoltar 
