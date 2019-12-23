@@ -18,11 +18,16 @@ const ENTREGAS = [
 
 export default function Entregas(props) {
     const [entregas, setEntregas] = useState([]);
+    const [novo, setNovo] = useState(false);
 
     useEffect(() => {
         async function carregaDados() {
             const dados = await api.get('/entregas');
             setEntregas(dados.data);
+            
+            if(props.location.state) {
+                setNovo(props.location.state.cadastro);
+            }
         }
 
         carregaDados();
@@ -33,10 +38,17 @@ export default function Entregas(props) {
         props.history.push(`/mapa/${id}`);
     }
 
+    setTimeout(() => {
+        setNovo(false);
+    }, 5000);
+
     return (
         <div class="container">
             <h1 class="titulo">
                 Lista de Entregas
+                {novo && <div className="mensagem">
+                    Cadastro Realizado com Sucesso.
+                </div>}
             </h1>
 
             <div class="painel">

@@ -28,7 +28,7 @@ export default function Cadastro(props) {
         const retorno = salvarDados();
 
         if(retorno) {
-            props.history.push('/entregas');
+            props.history.push('/entregas', {cadastro: true});
         }
     }
 
@@ -40,15 +40,15 @@ export default function Cadastro(props) {
 
             <form 
                 className="formulario" 
-                method="POST"
-                onSubmit={e => handleSubmit(e)}
+                method="POST"       
+                onSubmit={e => handleSubmit(e)}         
             >
                 <div className="formInput">
                     <label htmlFor="">Nome Cliente:</label>
                     <input 
                         type="text" 
                         value={cliente}
-                        onChange={e => setCliente(e.value)}
+                        onChange={e => setCliente(e.target.value)}
                         placeholder="Digite o nome completo do Cliente"
                         minLength="5"
                         required
@@ -59,7 +59,7 @@ export default function Cadastro(props) {
                     <input 
                         type="date" 
                         value={dataEntrega}
-                        onChange={e => setDataEntrega(e.value)}
+                        onChange={e => setDataEntrega(e.target.value)}
                     />
                 </div>
 
@@ -68,7 +68,7 @@ export default function Cadastro(props) {
                     <input 
                         type="text" 
                         value={localOrigem}
-                        onChange={e => setLocalOrigem(e.value)}
+                        onChange={e => setLocalOrigem(e.target.value)}
                         placeholder="Digite o Endereço de Origem"
                         minLength="5"
                         required
@@ -80,7 +80,7 @@ export default function Cadastro(props) {
                     <input 
                         type="text" 
                         value={localDestino}
-                        onChange={e => setLocalDestino(e.value)}
+                        onChange={e => setLocalDestino(e.target.value)}
                         placeholder="Digite o Endereço de Destino"
                         minLength="5"
                         required
@@ -90,7 +90,7 @@ export default function Cadastro(props) {
                 <div>
                     <button 
                         type="submit"
-                        className="btnSalvar"
+                        className="btnSalvar"                        
                     >
                         <i className="fa fa-floppy-o" aria-hidden="true"></i>
                         Salvar

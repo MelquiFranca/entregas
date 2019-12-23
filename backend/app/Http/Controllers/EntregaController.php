@@ -14,7 +14,7 @@ class EntregaController extends Controller
      */
     public function index()
     {
-        $entregas = Entrega::all();
+        $entregas = Entrega::orderBy('id', 'desc')->get();
         return $entregas;
     }
 
@@ -38,7 +38,6 @@ class EntregaController extends Controller
     {
         $entrega = $request->all();
         Entrega::create($entrega);
-
         return $entrega;
     }
 

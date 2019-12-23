@@ -1,6 +1,18 @@
 .container .titulo {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     color: #555;
+}
+
+.container .titulo .mensagem {
+    background: rgb(44, 240, 119);
+    color: #FFF;
+    padding: 5px 50px;
+    font-size: 22px;
 }
 .container .itensMenu {
     flex: 8;
