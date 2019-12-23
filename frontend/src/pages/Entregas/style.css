@@ -1,6 +1,7 @@
 .container .painel {
     flex: 8;    
     overflow: auto;
+    margin-bottom: 10px;
 }
 
 .painel::-webkit-scrollbar { 
